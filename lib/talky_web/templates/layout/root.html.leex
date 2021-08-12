@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "Talky", suffix: " · Phoenix Framework" %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet" />
+
+    <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </head>
+  <body class="font-body">
+    <header class="bg-gradient-to-r from-pink-600 to-yellow-300 border-b-2">
+        <nav role="navigation" class="container mx-auto">
+          <div class="flex items-center">
+            <svg class="w-14 h-14"
+              width="100%"
+              height="100%"
+              viewBox="0 0 113 113"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+              xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+              xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <path d="M35.381,72.446l-6.576,22.525c-0.412,0.877 -0.165,1.923 0.596,2.524c0.761,0.601 1.836,0.597 2.593,-0.008l20.916,-25.041l42.633,0c0.998,0 1.808,-0.809 1.808,-1.807l-0,-46.061c-0,-0.998 -0.81,-1.807 -1.808,-1.807l-78.586,-0c-0.998,-0 -1.808,0.809 -1.808,1.807l0,46.061c0,0.998 0.81,1.807 1.808,1.807l18.424,0Z" style="fill:#fff;"/>
+              <path d="M65.393,58.967c0,-1.5 -1.217,-2.717 -2.716,-2.717l-12.854,0c-1.499,0 -2.716,1.217 -2.716,2.717l-0,5.433c-0,1.499 1.217,2.717 2.716,2.717l12.854,-0c1.499,-0 2.716,-1.218 2.716,-2.717l0,-5.433Z" style="fill:#2a2a31;"/>
+              <path d="M37.916,30.252c-0,-1.478 -1.2,-2.677 -2.677,-2.677l-5.354,-0c-1.477,-0 -2.677,1.199 -2.677,2.677l0,20.388c0,1.477 1.2,2.676 2.677,2.676l5.354,0c1.477,0 2.677,-1.199 2.677,-2.676l-0,-20.388Z" style="fill:#2a2a31;"/>
+              <path d="M87.712,30.252c-0,-1.478 -1.2,-2.677 -2.677,-2.677l-5.354,-0c-1.477,-0 -2.676,1.199 -2.676,2.677l-0,20.388c-0,1.477 1.199,2.676 2.676,2.676l5.354,0c1.477,0 2.677,-1.199 2.677,-2.676l-0,-20.388Z" style="fill:#2a2a31;"/>
+            </svg>
+            <h1 class="text-white uppercase font-bold text-2xl mb-0 pb-0 ml-1">Talky</h1>
+          </div>
+        </nav>
+    </header>
+    <%= @inner_content %>
+  </body>
+</html>
