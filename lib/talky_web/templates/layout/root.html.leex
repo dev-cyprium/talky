@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet" />
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
 
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -17,7 +18,7 @@
   </head>
   <body class="font-body">
     <header class="bg-gradient-to-r from-pink-600 to-yellow-300 border-b-2">
-        <nav role="navigation" class="container mx-auto">
+        <nav role="navigation" class="container mx-auto flex">
           <div class="flex items-center">
             <svg class="w-14 h-14"
               width="100%"
@@ -35,6 +36,11 @@
             </svg>
             <h1 class="text-white uppercase font-bold text-2xl mb-0 pb-0 ml-1">Talky</h1>
           </div>
+
+          <ul class="ml-auto flex items-center space-x-4">
+            <li class="text-white">About</li>
+            <li class="text-white font-bold">Sign Up</li>
+          </ul>
         </nav>
     </header>
     <%= @inner_content %>
