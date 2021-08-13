@@ -8,6 +8,7 @@ defmodule TalkyWeb.Router do
     plug :put_root_layout, {TalkyWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug TalkyWeb.Plug.Auth
   end
 
   pipeline :api do
@@ -17,7 +18,11 @@ defmodule TalkyWeb.Router do
   scope "/", TalkyWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    # live "/", PageLive, :index
+    get "/", PageController, :home
+
+    get "/sign-up", UserController, :register_form
+    post "/sign-up", UserController, :register
   end
 
   # Other scopes may use custom stacks.

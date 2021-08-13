@@ -2,7 +2,11 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      margin: {
+        "-navigation": "-58px",
+      },
+    },
     fontFamily: {
       sans: ["Source Sans Pro"],
       body: ["Source Sans Pro"],
@@ -12,5 +16,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };

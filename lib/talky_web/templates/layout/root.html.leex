@@ -17,7 +17,7 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body class="font-body">
-    <header class="bg-gradient-to-r from-pink-600 to-yellow-300 border-b-2">
+    <header class="bg-gradient-to-r from-pink-600 to-yellow-300 border-b-2 relative z-50">
         <nav role="navigation" class="container mx-auto flex">
           <div class="flex items-center">
             <svg class="w-14 h-14"
@@ -39,7 +39,19 @@
 
           <ul class="ml-auto flex items-center space-x-4">
             <li class="text-white">About</li>
-            <li class="text-white font-bold">Sign Up</li>
+            <%= if logged_in?(@conn) do %>
+            <li class="text-white">
+              Welcome,
+              <span class="font-bold"><%= @conn.assigns.current_user.name %></span>
+            </li>
+            <li class="text-white">
+              <%= link "Logout", to: Routes.session_path(@conn, :destroy) %>
+            </li>
+            <% else %>
+            <li class="text-white font-bold">
+              <%= link "Sign Up", to: Routes.user_path(@conn, :register)  %>
+            </li>
+            <% end %>
           </ul>
         </nav>
     </header>

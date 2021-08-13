@@ -1,0 +1,24 @@
+<section class="bg-gray-100 h-screen -mt-navigation z-20 pt-24">
+<%= form_for @changeset, Routes.user_path(@conn, :register), [class: "bg-white rounded-md shadow-md w-full max-w-md mx-auto p-4"], fn f -> %>
+
+    <div class="mb-4">
+      <label for="#">Name</label>
+      <%= text_input f, :name, class: "block w-full", placeholder: "Name" %>
+      <%= error_tag f, :name %>
+    </div>
+
+    <div class="mb-4">
+      <label for="#">Email</label>
+      <%= text_input f, :email, class: "block w-full", placeholder: "Email" %>
+      <%= error_tag f, :email %>
+    </div>
+
+    <div class="mb-4">
+      <label for="#">Password</label>
+      <%= password_input f, :password, class: "block w-full", placeholder: "Password" %>
+      <%= error_tag f, :password %>
+    </div>
+
+    <%= submit "Create Account", class: "text-white bg-blue-600 p-2 rounded-md" %>
+<% end %>
+</section>
