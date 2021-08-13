@@ -23,6 +23,7 @@ defmodule TalkyWeb.Router do
 
     get "/sign-up", UserController, :register_form
     post "/sign-up", UserController, :register
+    delete "/sign-out", SessionController, :destroy
   end
 
   # Other scopes may use custom stacks.

@@ -45,7 +45,7 @@
               <span class="font-bold"><%= @conn.assigns.current_user.name %></span>
             </li>
             <li class="text-white">
-              <%= link "Logout", to: Routes.session_path(@conn, :destroy) %>
+              <%= link "Logout", to: Routes.session_path(@conn, :destroy), method: :delete %>
             </li>
             <% else %>
             <li class="text-white font-bold">

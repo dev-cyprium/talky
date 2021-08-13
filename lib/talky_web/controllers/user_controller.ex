@@ -14,6 +14,7 @@ defmodule TalkyWeb.UserController do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)
+        |> configure_session(renew: true)
         |> put_flash(:info, "Successfully signed up!")
         |> redirect(to: "/")
       {:error, changeset} ->
