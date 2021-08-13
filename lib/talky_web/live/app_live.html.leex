@@ -1,0 +1,14 @@
+<div class="p-10">
+  <h1 class="text-4xl">Welcome to the App! <%= @current_user.name %></h1>
+  <p class="text-lg mt-2">
+    Use the navigation on the left to play around with the features.
+    To get started, add our javascript snippet to your site!
+  </p>
+  <pre class="bg-blue-50 my-4 p-4 rounded-md" x-data="{
+    code: `<script defer type='text/javascript' src='<%= TalkyWeb.Endpoint.url() <> "/js/bot.js" %>'></script>
+<script defer type='text/javascript'>
+  Bot.mount('#app')
+</script>`
+    }" x-text="code">
+  </pre>
+</div>

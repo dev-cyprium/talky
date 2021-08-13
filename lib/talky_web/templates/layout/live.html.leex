@@ -1,3 +1,25 @@
-<main role="main">
-  <%= @inner_content %>
+
+
+<main role="main" class="flex">
+  <aside class="bg-pink-600 w-1/5 h-screen">
+    <nav>
+      <ul>
+        <li class="py-1 pl-2">
+          <%= live_redirect to: "/", class: "flex text-white items-center text-xl" do %>
+            <i class="lni lni-graph"></i>
+            <p class="ml-1">My Bots</p>
+          <% end %>
+        </li>
+        <li class="py-1 pl-2">
+          <%= live_redirect to: "/", class: "flex text-white items-center text-xl" do %>
+            <i class="lni lni-popup text-xl"></i>
+            <p class="ml-1">Conversations</p>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <section class="flex-1">
+    <%= @inner_content %>
+  </section>
 </main>

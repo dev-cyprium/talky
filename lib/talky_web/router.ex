@@ -18,7 +18,7 @@ defmodule TalkyWeb.Router do
   scope "/", TalkyWeb do
     pipe_through :browser
 
-    # live "/", PageLive, :index
+    live "/app", AppLive, :index
     get "/", PageController, :home
 
     get "/sign-up", UserController, :register_form

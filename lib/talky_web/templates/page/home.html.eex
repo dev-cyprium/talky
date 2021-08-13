@@ -12,9 +12,7 @@
       <p class="text-white leading-normal text-2xl">
         In just a few easy steps, automate customer support in no time!
       </p>
-      <a class="text-white bg-blue-600 p-4 rounded-md text-left self-start my-4" href="#">
-        Go to the App!
-      </a>
+      <%= link "Go to the App!", to: Routes.app_path(@conn, :index), class: "text-white bg-blue-600 p-4 rounded-md text-left self-start my-4" %>
     </div>
     <div class="md:w-2/5 py-6 flex justify-center">
       <img

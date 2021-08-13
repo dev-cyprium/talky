@@ -16,11 +16,23 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import topbar from "topbar";
 import { LiveSocket } from "phoenix_live_view";
+import Alpine from "alpinejs";
+
+window.Alpine = Alpine;
+Alpine.start();
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
+  // Magic line to make LiveView work with Alpine.js and not make state dissapear
+  dom: {
+    onBeforeElUpdated(from, to) {
+      if (from._x_dataStack) {
+        window.Alpine.clone(from, to);
+      }
+    },
+  },
   params: { _csrf_token: csrfToken },
 });
 
