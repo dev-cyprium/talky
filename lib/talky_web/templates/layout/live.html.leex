@@ -1,11 +1,15 @@
-
-
 <main role="main" class="flex">
   <aside class="bg-pink-600 w-1/5 h-screen">
     <nav>
       <ul>
         <li class="py-1 pl-2">
-          <%= live_redirect to: "/", class: "flex text-white items-center text-xl" do %>
+          <%= live_patch to: "/app", class: "flex text-white items-center text-xl" do %>
+            <i class="lni lni-dashboard"></i>
+            <p class="ml-1">Dashboard</p>
+          <% end %>
+        </li>
+        <li class="py-1 pl-2">
+          <%= live_patch to: "/bots", class: "flex text-white items-center text-xl" do %>
             <i class="lni lni-graph"></i>
             <p class="ml-1">My Bots</p>
           <% end %>

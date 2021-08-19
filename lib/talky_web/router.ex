@@ -19,6 +19,7 @@ defmodule TalkyWeb.Router do
     pipe_through :browser
 
     live "/app", AppLive
+    live "/bots", BotsLive
     get "/", PageController, :home
 
     get "/sign-up", UserController, :register_form
