@@ -7,7 +7,11 @@ defmodule Talky.AccountsTest do
     alias Talky.Accounts.User
 
     @valid_attrs %{email: "some email", name: "some name", password: "some password"}
-    @update_attrs %{email: "some updated email", name: "some updated name", password: "some updated password"}
+    @update_attrs %{
+      email: "some updated email",
+      name: "some updated name",
+      password: "some updated password"
+    }
     @invalid_attrs %{email: nil, name: nil, password: nil}
 
     def user_fixture(attrs \\ %{}) do

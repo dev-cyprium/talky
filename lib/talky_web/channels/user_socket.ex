@@ -19,6 +19,7 @@ defmodule TalkyWeb.UserSocket do
   def connect(%{"username" => username}, socket, _connect_info) do
     {:ok, assign(socket, :user, username)}
   end
+
   def connect(_, _, _), do: :error
 
   # Socket id's are topics that allow you to identify all sockets for a given user:

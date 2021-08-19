@@ -17,8 +17,9 @@ defmodule TalkyWeb.UserController do
         |> configure_session(renew: true)
         |> put_flash(:info, "Successfully signed up!")
         |> redirect(to: "/")
+
       {:error, changeset} ->
         render(conn, :sign_up, changeset: changeset)
-      end
+    end
   end
 end

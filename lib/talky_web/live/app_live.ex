@@ -11,6 +11,7 @@ defmodule TalkyWeb.AppLive do
     cond do
       user ->
         {:ok, assign(socket, :current_user, user)}
+
       true ->
         {:ok, socket}
     end
