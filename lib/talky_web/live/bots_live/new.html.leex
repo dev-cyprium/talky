@@ -2,8 +2,22 @@
   <div class="bg-green-300 rounded p-2 max-w-lg mx-auto">
     <p>Entry Point</p>
   </div>
-  <div class="flex my-2 space-x-2 max-w-lg mx-auto">
-    <button class="bg-blue-200 rounded p-2 flex-1">Add Action</button>
-    <button class="bg-blue-200 rounded p-2 flex-1">Finish</button>
-  </div>
+  <form action="#" phx-submit="save">
+    <%= for action <- @actions do %>
+      <div x-data="{selectedType: 'show_message'}" class="bg-blue-200 rounded max-w-lg mx-auto my-2 p-4">
+        <select x-model="selectedType" class="w-full font-body" name="type[]">
+          <option value="show_message">Show Message</option>
+          <option value="show_options">Show Options</option>
+        </select>
+
+        <div class="mt-2" x-show="selectedType === 'show_message'">
+          <textarea class="w-full" placeholder="My message" ></textarea>
+        </div>
+      </div>
+    <% end %>
+    <div class="flex my-2 space-x-2 max-w-lg mx-auto">
+      <button phx-click="add_action" class="bg-blue-200 rounded p-2 flex-1">Add Action</button>
+      <button type="submit" class="bg-blue-200 rounded p-2 flex-1">Finish</button>
+    </div>
+  </form>
 </section>
