@@ -6,7 +6,7 @@ defmodule Talky.Accounts do
   import Ecto.Query, warn: false
   alias Talky.Repo
 
-  alias Talky.Accounts.User
+  alias Talky.Accounts.{User, Login}
 
   @doc """
   Returns the list of users.
@@ -91,6 +91,24 @@ defmodule Talky.Accounts do
     Repo.delete(user)
   end
 
+  def find_by_email(email) do
+    User
+    |> where([u], u.email == ^email)
+    |> Repo.one
+  end
+
+  def login(login_params) do
+    %Login{}
+    |> Login.changeset(login_params)
+    |> case do
+      %{valid?: true} = changeset ->
+        login_params["email"]
+        |> find_by_email()
+        |> handle_login_result(changeset, login_params)
+      changeset -> {:error, put_action(changeset)}
+    end
+  end
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.
 
@@ -103,4 +121,21 @@ defmodule Talky.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  def change_login(%Login{} = login, attrs \\ %{}) do
+    Login.changeset(login, attrs)
+  end
+
+  defp handle_login_result(nil, changeset, _), do: {:error, Ecto.Changeset.add_error(changeset, :email, "No user/password combination found") |> put_action}
+  defp handle_login_result(user, changeset, login_params) do
+    login_params["password"]
+    |> Argon2.verify_pass(user.password_hash)
+    |> case do
+      true -> {:ok, user}
+      false -> {:error,
+        Ecto.Changeset.add_error(changeset, :email, "No user/password combination found") |> put_action}
+    end
+  end
+
+  defp put_action(changeset), do: %{changeset | action: :create}
 end

@@ -21,10 +21,12 @@ defmodule TalkyWeb.Router do
     live "/app", AppLive
     live "/bots", BotsLive
     live "/bots/new", BotsLive.New
-    get "/", PageController, :home
 
+    get "/", PageController, :home
     get "/sign-up", UserController, :register_form
     post "/sign-up", UserController, :register
+    get "/login", SessionController, :login_form
+    post "/login", SessionController, :login
     delete "/sign-out", SessionController, :destroy
   end
 

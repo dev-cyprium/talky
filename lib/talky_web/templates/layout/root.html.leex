@@ -48,6 +48,9 @@
             <li class="text-white font-bold">
               <%= link "Sign Up", to: Routes.user_path(@conn, :register)  %>
             </li>
+            <li class="text-white font-bold">
+              <%= link "Login", to: Routes.session_path(@conn, :login_form)  %>
+            </li>
             <% end %>
           </ul>
         </nav>

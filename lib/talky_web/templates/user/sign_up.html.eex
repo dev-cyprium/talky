@@ -19,6 +19,10 @@
       <%= error_tag f, :password %>
     </div>
 
+    <div class="mb-4">
+      <%= link "Already have an account?", to: Routes.session_path(@conn, :login), class: "text-blue-400 hover:underline" %>
+    </div>
+
     <%= submit "Create Account", class: "text-white bg-blue-600 p-2 rounded-md" %>
 <% end %>
 </section>
