@@ -6,11 +6,13 @@ defmodule TalkyWeb.BotsLive.New do
     {:ok, assign(socket, :actions, [])}
   end
 
+  @impl true
   def handle_event("add_action", _, socket) do
     {:noreply, assign(socket, :actions, [%{} | socket.assigns.actions])}
   end
 
-  def handle_event("save", params, socket) do
+  @impl true
+  def handle_event("save", _, socket) do
     {:noreply, socket}
   end
 end

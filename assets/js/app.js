@@ -17,9 +17,16 @@ import { Socket } from "phoenix";
 import topbar from "topbar";
 import { LiveSocket } from "phoenix_live_view";
 import Alpine from "alpinejs";
+import BotInterface from "./logic/BotInterface";
 
 window.Alpine = Alpine;
 Alpine.start();
+
+let Hooks = {
+  BotInterface,
+};
+
+window.Hooks = Hooks;
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
@@ -33,6 +40,7 @@ let liveSocket = new LiveSocket("/live", Socket, {
       }
     },
   },
+  hooks: Hooks,
   params: { _csrf_token: csrfToken },
 });
 

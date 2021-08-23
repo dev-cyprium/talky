@@ -1,23 +1,48 @@
-<section class="p-10">
-  <div class="bg-green-300 rounded p-2 max-w-lg mx-auto">
-    <p>Entry Point</p>
-  </div>
-  <form action="#" phx-submit="save">
-    <%= for action <- @actions do %>
-      <div x-data="{selectedType: 'show_message'}" class="bg-blue-200 rounded max-w-lg mx-auto my-2 p-4">
-        <select x-model="selectedType" class="w-full font-body" name="type[]">
-          <option value="show_message">Show Message</option>
-          <option value="show_options">Show Options</option>
-        </select>
+<section class="h-full select-none">
+  <div id="bot-interface-sketchboard" class="h-full w-full relative" x-data="{
+      drawerOpen: null,
+      firstClick: false,
+      openDrawer(top, left) {
+        if (!!this.drawerOpen) return;
 
-        <div class="mt-2" x-show="selectedType === 'show_message'">
-          <textarea class="w-full" placeholder="My message" ></textarea>
-        </div>
-      </div>
-    <% end %>
-    <div class="flex my-2 space-x-2 max-w-lg mx-auto">
-      <button phx-click="add_action" class="bg-blue-200 rounded p-2 flex-1">Add Action</button>
-      <button type="submit" class="bg-blue-200 rounded p-2 flex-1">Finish</button>
+        this.drawerOpen = {
+          left,
+          top
+        };
+      }
+    }" x-on:dblclick="
+      firstClick = true;
+      openDrawer(
+        $event.clientY - $event.target.getBoundingClientRect().top,
+        $event.clientX - $event.target.getBoundingClientRect().left
+      );
+    " phx-hook="BotInterface">
+    <header x-show="!firstClick" class="absolute bg-blue-600 w-full z-20 py-4 px-2 text-white flex">
+      <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+          clip-rule="evenodd" />
+      </svg>
+      <p class="text-white">Double click to get started!</p>
+    </header>
+    <svg class="absolute inset-0" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+          <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5" />
+        </pattern>
+        <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+          <rect width="80" height="80" fill="url(#smallGrid)" />
+          <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1" />
+        </pattern>
+      </defs>
+
+      <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
+    <div x-show="drawerOpen" x-on:click.outside="drawerOpen = false"
+      class="absolute top-10 left-10 rounded-md bg-pink-600 w-32 p-2"
+      :style="{top: `${drawerOpen?.top}px`, left: `${drawerOpen?.left}px`}">
+      <button class="my-1 text-white">Add Entry Point</button>
+      <button class="my-1 text-white">Add Logic step</button>
     </div>
-  </form>
+  </div>
 </section>
