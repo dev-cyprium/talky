@@ -1,22 +1,5 @@
 <section class="h-full select-none">
-  <div id="bot-interface-sketchboard" class="h-full w-full relative" x-data="{
-      drawerOpen: null,
-      firstClick: false,
-      openDrawer(top, left) {
-        if (!!this.drawerOpen) return;
-
-        this.drawerOpen = {
-          left,
-          top
-        };
-      }
-    }" x-on:dblclick="
-      firstClick = true;
-      openDrawer(
-        $event.clientY - $event.target.getBoundingClientRect().top,
-        $event.clientX - $event.target.getBoundingClientRect().left
-      );
-    " phx-hook="BotInterface">
+  <div id="bot-interface-sketchboard" class="h-full w-full relative" x-data="botInterface" x-on:dblclick="handleClick" phx-hook="BotInterface">
     <header x-show="!firstClick" class="absolute bg-blue-600 w-full z-20 py-4 px-2 text-white flex">
       <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd"
